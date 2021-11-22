@@ -22,7 +22,7 @@ const ListPage = () => {
 
     return (
         <SafeAreaView>
-            <Text>Hello</Text>
+            {characters && characters.results.map((character, key) => <Text key={key}>{character.name}</Text>)}
         </SafeAreaView>
 )
 }

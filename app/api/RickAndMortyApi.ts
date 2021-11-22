@@ -3,14 +3,16 @@ import Axios from 'axios';
 Axios.defaults.baseURL = "https://rickandmortyapi.com/api/";
 
 export type Character = {
-    id: number;
-    name: string;
-    species: string;
-    status: string;
-    image: string;
-    origin: {
+    results: [{
+        id: number;
         name: string;
-    }
+        species: string;
+        status: string;
+        image: string;
+        origin: {
+            name: string;
+        }
+    }]
 }
 
 const getAllCharacters = async () => {
