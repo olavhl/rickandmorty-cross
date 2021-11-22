@@ -1,5 +1,5 @@
 import React from 'react';
-import {TabNavigation} from "./shared/TabNavigation";
+import {TabNavigation} from "./app/shared/TabNavigation";
 
 export default function App() {
   return (
