@@ -1,12 +1,8 @@
-import {Character} from "../../api/RickAndMortyApi";
 import {Text, View} from "react-native";
 import React from "react";
+import {CharacterProps} from "../../types/Props";
 
-type CharacterProps = {
-    character: Character
-}
-
-function CharacterListItem({ character}: CharacterProps) {
+function CharacterListItem({ character }: CharacterProps) {
     return <View>
         <Text>{character.name}</Text>
     </View>;

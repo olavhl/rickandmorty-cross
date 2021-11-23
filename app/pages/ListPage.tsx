@@ -1,22 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {SafeAreaView} from "react-native";
-import RickAndMortyApi, {Character, CharacterListType} from "../api/RickAndMortyApi";
+import RickAndMortyApi from "../api/RickAndMortyApi";
 import useApi from "../hooks/useApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
+import {CharacterListProps} from "../types/Props";
 import CharacterList from "../components/list/CharacterList";
 
 const ListPage = () => {
-    const { data, error, loading, request: getCharacters } = useApi<CharacterListType>(RickAndMortyApi.getAllCharacters)
-    const [characters, setCharacters] = useState<[Character]>()
+    const { data: characters, error, loading, request: getCharacters } = useApi<CharacterListProps>(RickAndMortyApi.getAllCharacters)
 
     useEffect(() => {
         getCharacters()
-
-        // Setting data into state to make it easier to handle and modify
-        if (data?.results != undefined) {
-           setCharacters(data?.results)
-        }
     }, [])
 
     if (loading) {
@@ -29,9 +24,7 @@ const ListPage = () => {
 
     return (
         <SafeAreaView>
-            {characters &&
-            <CharacterList characters={characters} /> }
-
+            {characters && <CharacterList characters={characters}/>}
         </SafeAreaView>
 )
 }

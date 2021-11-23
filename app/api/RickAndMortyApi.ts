@@ -1,27 +1,11 @@
 import Axios from 'axios';
+import {CharacterListProps} from "../types/Props";
 
 Axios.defaults.baseURL = "https://rickandmortyapi.com/api/";
 
-export type CharacterListType = {
-    results: [
-        character: Character
-    ]
-}
-
-export type Character = {
-    id: number;
-    name: string;
-    species: string;
-    status: string;
-    image: string;
-    origin: {
-        name: string;
-    }
-}
-
 const getAllCharacters = async () => {
     try {
-        const res = await Axios.get<CharacterListType>("character")
+        const res = await Axios.get<CharacterListProps>("character")
         return res.data
     } catch (e) {
         throw "Error fetching characters from API " + e
@@ -30,7 +14,7 @@ const getAllCharacters = async () => {
 
 const getCharacter = async (character: number | string) => {
     try {
-        const res = await Axios.get<CharacterListType>("character")
+        const res = await Axios.get<CharacterListProps>("character")
         return res.data
     } catch (e) {
         throw "Error fetching characters from API " + e
