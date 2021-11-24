@@ -1,14 +1,16 @@
 import React, {useEffect} from "react";
-import {SafeAreaView} from "react-native";
+import {FlatList, SafeAreaView} from "react-native";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import useApi from "../hooks/useApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
-import {CharacterListProps} from "../types/Props";
-import CharacterList from "../components/list/CharacterList";
+import {ApiProps} from "../types/Props";
+import CharacterListItem from "../components/list/CharacterListItem";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {RootStackParamList} from "../shared/navigation/CharactersStackNavigations";
 
-const ListPage = () => {
-    const { data: characters, error, loading, request: getCharacters } = useApi<CharacterListProps>(RickAndMortyApi.getAllCharacters)
+const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
+    const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
 
     useEffect(() => {
         getCharacters()
@@ -22,11 +24,16 @@ const ListPage = () => {
         return <ErrorView onPress={() => getCharacters}/>
     }
 
+
     return (
         <SafeAreaView>
-            {characters && <CharacterList characters={characters}/>}
+            {data && <FlatList data={data}
+                               keyExtractor={(item) => item.id.toString()}
+                               renderItem={({item}) => <CharacterListItem
+                                   onPress={() => navigation.navigate("Details")} character={item}/>}
+            />}
         </SafeAreaView>
-)
+    )
 }
 
 export default ListPage;

@@ -4,16 +4,16 @@ import ListPage from "../../pages/ListPage";
 import React from "react";
 import CharactersStackNavigations from "./CharactersStackNavigations";
 
-export type RootStackParamsList = {
-    Home: undefined;
+export type RootTabParamsList = {
+    Characters: undefined;
     Map: undefined;
 }
 
 export function TabNavigation() {
-    const Tab = createBottomTabNavigator<RootStackParamsList>();
+    const Tab = createBottomTabNavigator<RootTabParamsList>();
 
     return <Tab.Navigator>
-            <Tab.Screen name={"Home"} component={CharactersStackNavigations} options={{
+            <Tab.Screen name={"Characters"} component={CharactersStackNavigations} options={{
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"list"} size={size} color={color}/>
             }}/>

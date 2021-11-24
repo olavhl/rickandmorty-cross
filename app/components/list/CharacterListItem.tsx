@@ -1,13 +1,21 @@
-import {StyleSheet, Text, View} from "react-native";
+import {GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
-import {CharacterProps} from "../../types/Props";
+import {Character} from "../../types/Props";
 import {Sprite} from "../Sprite";
 
-function CharacterListItem({ character }: CharacterProps) {
-    return <View style={styles.container}>
-        <Sprite uri={character.image} height={50} width={50} />
-        <Text style={styles.text}>{character.name}</Text>
-    </View>;
+type Props = {
+    character: Character;
+    onPress?: (event: GestureResponderEvent) => void;
+}
+
+function CharacterListItem({character, onPress}: Props) {
+    return (
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.container}>
+                <Sprite uri={character.image} height={50} width={50}/>
+                <Text style={styles.text}>{character.name}</Text>
+            </View>
+        </TouchableOpacity>);
 }
 
 const styles = StyleSheet.create({

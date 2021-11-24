@@ -1,5 +1,3 @@
-export type CharacterListProps = { characters: [Character] };
-
 export type Character = {
     id: number;
     name: string;
@@ -11,6 +9,8 @@ export type Character = {
     }
 }
 
-export type CharacterProps = {
-    character: Character
+export type ApiProps = {
+    results: [
+     character: Character
+    ]
 }

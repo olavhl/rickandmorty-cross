@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import ListPage from "../../pages/ListPage";
 import CharacterDetailsPage from "../../pages/CharacterDetailsPage";
 
-type RootStackParamList = {
+export type RootStackParamList = {
     Home: undefined;
     Details: undefined;
 }
