@@ -1,10 +1,13 @@
 import React from 'react';
-import {TabNavigation} from "./app/shared/TabNavigation";
+import {TabNavigation} from "./app/shared/navigation/TabNavigation";
+import {NavigationContainer} from "@react-navigation/native";
 
 export default function App() {
-  return (
-    <TabNavigation/>
-  )
+    return (
+        <NavigationContainer>
+            <TabNavigation/>
+        </NavigationContainer>
+    )
 }
 
 
