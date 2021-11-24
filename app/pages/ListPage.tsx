@@ -24,13 +24,12 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
         return <ErrorView onPress={() => getCharacters}/>
     }
 
-
     return (
         <SafeAreaView>
             {data && <FlatList data={data}
                                keyExtractor={(item) => item.id.toString()}
                                renderItem={({item}) => <CharacterListItem
-                                   onPress={() => navigation.navigate("Details")} character={item}/>}
+                                   onPress={() => navigation.navigate("Details", {character: item})} character={item}/>}
             />}
         </SafeAreaView>
     )

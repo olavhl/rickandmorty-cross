@@ -2,10 +2,11 @@ import React from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import ListPage from "../../pages/ListPage";
 import CharacterDetailsPage from "../../pages/CharacterDetailsPage";
+import {Character} from "../../types/Props";
 
 export type RootStackParamList = {
     Home: undefined;
-    Details: undefined;
+    Details: { character: Character };
 }
 
 const CharactersStackNavigations = () => {
