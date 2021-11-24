@@ -12,7 +12,7 @@ export type RootTabParamsList = {
 export function TabNavigation() {
     const Tab = createBottomTabNavigator<RootTabParamsList>();
 
-    return <Tab.Navigator>
+    return <Tab.Navigator screenOptions={{headerShown: false}}>
             <Tab.Screen name={"Characters"} component={CharactersStackNavigations} options={{
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"list"} size={size} color={color}/>
