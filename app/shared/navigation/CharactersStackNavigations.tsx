@@ -13,6 +13,7 @@ const CharactersStackNavigations = () => {
     const Stack = createNativeStackNavigator<RootStackParamList>();
 
     const options = {
+        headerShadowVisible: false,
         headerStyle: {
             backgroundColor: "#2A2A2A",
         },
