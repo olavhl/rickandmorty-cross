@@ -1,20 +1,29 @@
-import React, {useEffect} from "react";
-import {SafeAreaView, StyleSheet, Text, View} from "react-native";
+import React, {useEffect, useState} from "react";
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import useApi from "../hooks/useApi";
 import {ApiProps} from "../types/Props";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
-import {FontAwesome5} from "@expo/vector-icons";
 import {CircleIcon} from "../components/CircleIcon";
+import {ModalView} from "../components/modal/ModalView";
 
 const RocketRidePage = () => {
     const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const [modalVisible, setModalVisible] = useState(false)
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
         getCharacters()
     }, [])
+
+    const showModal = () => {
+        setModalVisible(true);
+    }
+
+    const hideModal = () => {
+        setModalVisible(false)
+    }
 
     if (loading) {
         return <LoadingView animating={loading}/>
@@ -25,12 +34,19 @@ const RocketRidePage = () => {
     }
 
     return <SafeAreaView style={[globalStyle.mainBackground, styles.container]}>
-            <Text style={[globalStyle.textColor, styles.textStyles]}>Select Characters for Rocket Ride</Text>
+        <Text style={[globalStyle.textColor, styles.textStyles]}>Select Characters for Rocket Ride</Text>
         <View style={styles.addUsers}>
-            <CircleIcon widthAndHeight={100} circleColor={"#8685EF"} imageName={"user-plus"} imageSize={50} />
-            <View style={{flex: 0.2}} />
-            <CircleIcon widthAndHeight={100} circleColor={"#63B9C1"} imageName={"user-plus"} imageSize={50} />
+            <TouchableOpacity onPress={() => showModal()}>
+                <CircleIcon widthAndHeight={100} circleColor={"#8685EF"} imageName={"user-plus"} imageSize={50}/>
+            </TouchableOpacity>
+            <View style={{flex: 0.2}}/>
+            <TouchableOpacity onPress={() => showModal()}>
+                <CircleIcon widthAndHeight={100} circleColor={"#63B9C1"} imageName={"user-plus"}
+                            imageSize={50}/>
+            </TouchableOpacity>
+
         </View>
+        {modalVisible && <ModalView characters={data!} onPress={() => hideModal()}/>}
     </SafeAreaView>
 }
 
@@ -54,7 +70,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flex: 1,
         flexDirection: 'row'
-    }
+    },
 })
 
 export default RocketRidePage;
