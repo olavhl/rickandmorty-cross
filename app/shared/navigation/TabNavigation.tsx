@@ -1,33 +1,39 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {FontAwesome5} from "@expo/vector-icons";
-import ListPage from "../../pages/ListPage";
 import React from "react";
 import CharactersStackNavigations from "./CharactersStackNavigations";
+import RocketRidePage from "../../pages/RocketRidePage";
 
 export type RootTabParamsList = {
     Characters: undefined;
-    Map: undefined;
+    Rocket: undefined;
 }
 
 export function TabNavigation() {
     const Tab = createBottomTabNavigator<RootTabParamsList>();
+    const tabStyle = {
+        backgroundColor: "#2A2A2A",
+        borderTopWidth: 0,
+    };
 
-    return <Tab.Navigator screenOptions={{headerShown: false}}>
+    return <Tab.Navigator>
             <Tab.Screen name={"Characters"} component={CharactersStackNavigations} options={{
-                tabBarStyle: {
-                    backgroundColor: "#2A2A2A",
-                    borderTopWidth: 0,
-                },
+                tabBarStyle: tabStyle,
+                headerShown: false,
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"list"} size={size} color={color}/>
             }}/>
-            <Tab.Screen name={"Map"} component={ListPage} options={{
-                tabBarStyle: {
+            <Tab.Screen name={"Rocket"} component={RocketRidePage} options={{
+                tabBarStyle: tabStyle,
+                headerShadowVisible: false,
+                headerStyle: {
                     backgroundColor: "#2A2A2A",
-                    borderTopWidth: 0,
+                },
+                headerTitleStyle: {
+                    color: "#FFFFFF",
                 },
                 tabBarIcon: ({color, size}) =>
-                    <FontAwesome5 name={"cog"} size={size} color={color}/>
+                    <FontAwesome5 name={"rocket"} size={size} color={color}/>
             }}/>
         </Tab.Navigator>;
 }
