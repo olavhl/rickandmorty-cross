@@ -12,22 +12,18 @@ export type RootStackParamList = {
 const CharactersStackNavigations = () => {
     const Stack = createNativeStackNavigator<RootStackParamList>();
 
+    const options = {
+        headerStyle: {
+            backgroundColor: "#2A2A2A",
+        },
+        headerTitleStyle: {
+            color: "#FFFFFF",
+        }
+    }
+
     return <Stack.Navigator initialRouteName={"Home"}>
-        <Stack.Screen name={"Home"} component={ListPage} options={{
-            headerStyle: {
-                backgroundColor: "#2A2A2A",
-            },
-            headerTitleStyle: {
-                color: "#FFFFFF",
-            }
-        }} />
-        <Stack.Screen name={"Details"} component={CharacterDetailsPage} options={{
-            headerStyle: {
-                backgroundColor: "#2A2A2A",
-            },
-            headerTitleStyle: {
-                color: "#FFFFFF",
-            }}} />
+        <Stack.Screen name={"Home"} component={ListPage} options={options} />
+        <Stack.Screen name={"Details"} component={CharacterDetailsPage} options={options} />
     </Stack.Navigator>
 }
 

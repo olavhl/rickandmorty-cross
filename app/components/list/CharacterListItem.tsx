@@ -9,11 +9,12 @@ type Props = {
 }
 
 function CharacterListItem({character, onPress}: Props) {
+    const globalStyle = require("../../assets/style");
     return (
         <TouchableOpacity onPress={onPress}>
-            <View style={styles.container}>
+            <View style={[styles.container, globalStyle.mainBackground]}>
                 <Sprite uri={character.image} height={50} width={50}/>
-                <Text style={styles.text}>{character.name}</Text>
+                <Text style={[styles.text, globalStyle.textColor]}>{character.name}</Text>
             </View>
         </TouchableOpacity>);
 }
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         marginLeft: 15,
-        color: "#FFFFFF",
     }
 })
 

@@ -11,6 +11,7 @@ import {RootStackParamList} from "../shared/navigation/CharactersStackNavigation
 
 const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const globalStyle = require("../assets/style");
 
     useEffect(() => {
         getCharacters()
@@ -26,7 +27,7 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={globalStyle.mainBackground}>
             {data && <FlatList data={data}
                                keyExtractor={(item) => item.id.toString()}
                                renderItem={({item}) => <CharacterListItem
@@ -35,11 +36,5 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#2A2A2A",
-    }
-})
 
 export default ListPage;
