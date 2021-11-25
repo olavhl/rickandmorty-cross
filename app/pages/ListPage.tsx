@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {FlatList, SafeAreaView} from "react-native";
+import {FlatList, SafeAreaView, StyleSheet} from "react-native";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import useApi from "../hooks/useApi";
 import {LoadingView} from "../shared/LoadingView";
@@ -14,6 +14,7 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
 
     useEffect(() => {
         getCharacters()
+        console.log(data!)
     }, [])
 
     if (loading) {
@@ -25,7 +26,7 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             {data && <FlatList data={data}
                                keyExtractor={(item) => item.id.toString()}
                                renderItem={({item}) => <CharacterListItem
@@ -34,5 +35,11 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "#2A2A2A",
+    }
+})
 
 export default ListPage;

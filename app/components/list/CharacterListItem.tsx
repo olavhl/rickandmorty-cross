@@ -23,8 +23,10 @@ const styles = StyleSheet.create({
         padding: 10,
         marginLeft: 10,
         marginRight: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: "gray",
+        marginTop: 2.5,
+        marginBottom: 2.5,
+        borderBottomWidth: 0.2,
+        borderBottomColor: "#595959",
         flex: 1,
         flexDirection: "row",
         alignItems: "center"
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         marginLeft: 15,
+        color: "#FFFFFF",
     }
 })
 
