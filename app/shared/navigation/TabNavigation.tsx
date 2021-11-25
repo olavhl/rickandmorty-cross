@@ -3,7 +3,6 @@ import {FontAwesome5} from "@expo/vector-icons";
 import ListPage from "../../pages/ListPage";
 import React from "react";
 import CharactersStackNavigations from "./CharactersStackNavigations";
-import {StyleSheet} from "react-native";
 
 export type RootTabParamsList = {
     Characters: undefined;
@@ -28,9 +27,3 @@ export function TabNavigation() {
             }}/>
         </Tab.Navigator>;
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#2A2A2A"
-    }
-})
