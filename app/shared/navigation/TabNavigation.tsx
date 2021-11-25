@@ -22,6 +22,10 @@ export function TabNavigation() {
                     <FontAwesome5 name={"list"} size={size} color={color}/>
             }}/>
             <Tab.Screen name={"Map"} component={ListPage} options={{
+                tabBarStyle: {
+                    backgroundColor: "#2A2A2A",
+                    borderTopWidth: 0,
+                },
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"cog"} size={size} color={color}/>
             }}/>

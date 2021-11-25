@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {FlatList, SafeAreaView, StyleSheet} from "react-native";
+import {FlatList, SafeAreaView} from "react-native";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import useApi from "../hooks/useApi";
 import {LoadingView} from "../shared/LoadingView";
