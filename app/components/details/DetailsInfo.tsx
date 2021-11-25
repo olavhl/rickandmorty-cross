@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from "react-native";
-import {FontAwesome5} from "@expo/vector-icons";
 import React from "react";
+import {CircleIcon} from "../CircleIcon";
 
 type Props = {
     iconName: string;
@@ -17,15 +17,7 @@ export function DetailsInfo({iconName, textName, circleColor}: Props) {
             justifyContent: 'flex-start',
             width: '60%'
         },
-        iconCircle: {
-            width: 65,
-            height: 65,
-            backgroundColor: circleColor,
-            borderRadius: 50,
-            alignItems: 'center',
-            justifyContent: 'center'
 
-        },
         textContainer: {
             flex: 1,
             justifyContent: 'center',
@@ -37,9 +29,7 @@ export function DetailsInfo({iconName, textName, circleColor}: Props) {
     })
 
     return <View style={styles.iconContainer}>
-        <View style={styles.iconCircle}>
-            <FontAwesome5 name={iconName} size={40} color={"#2A2A2A"}/>
-        </View>
+        <CircleIcon widthAndHeight={65} circleColor={circleColor} imageName={iconName} imageSize={40}/>
         <View style={{flex: 0.1}}/>
         <View style={styles.textContainer}>
             <Text style={[globalStyle.textColor, styles.textStyle]}>{textName}</Text>

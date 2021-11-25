@@ -15,7 +15,6 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
 
     useEffect(() => {
         getCharacters()
-        console.log(data!)
     }, [])
 
     if (loading) {

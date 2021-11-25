@@ -16,14 +16,15 @@ export function TabNavigation() {
         borderTopWidth: 0,
     };
 
-    return <Tab.Navigator>
+    return <Tab.Navigator screenOptions={{headerShown: false}}>
             <Tab.Screen name={"Characters"} component={CharactersStackNavigations} options={{
+                tabBarLabel: () => null,
                 tabBarStyle: tabStyle,
-                headerShown: false,
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"list"} size={size} color={color}/>
             }}/>
             <Tab.Screen name={"Rocket"} component={RocketRidePage} options={{
+                tabBarLabel: () => null,
                 tabBarStyle: tabStyle,
                 headerShadowVisible: false,
                 headerStyle: {
