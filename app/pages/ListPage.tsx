@@ -14,7 +14,7 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
-        getCharacters()
+        getCharacters().then(() => console.log("Fetched API"))
     }, [])
 
     if (loading) {

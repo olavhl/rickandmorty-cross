@@ -15,7 +15,7 @@ const RocketRidePage = () => {
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
-        getCharacters()
+        getCharacters().then(() => console.log("Fetched API"))
     }, [])
 
     const showModal = () => {
