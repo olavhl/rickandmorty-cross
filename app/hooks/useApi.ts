@@ -10,7 +10,7 @@ const useApi = <T = unknown>(apiFunction: Function) => {
             setLoading(true)
             setError(false)
             const res = await apiFunction(...args)
-            setData(res.results)
+            setData(res)
         } catch (e) {
             setError(true)
         } finally {

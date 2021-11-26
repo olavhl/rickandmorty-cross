@@ -1,14 +1,15 @@
-import {Modal, Pressable, StyleSheet, Text, View} from "react-native";
+import {GestureResponderEvent, Modal, Pressable, StyleSheet, Text, View} from "react-native";
 import React from "react";
 import {Character} from "../../types/Props";
-import {ModalList} from "./ModalList";
+import {ModalListItem} from "./ModalListItem";
 
 type Props = {
     onPress: () => void;
     characters: [Character];
+    onClickedCharacter: (e: GestureResponderEvent) => void;
 }
 
-export function ModalView({onPress, characters}: Props) {
+export function ModalView({onPress, characters, onClickedCharacter}: Props) {
     const globalStyle = require("../../assets/style");
     const styles = StyleSheet.create({
         modalContainer: {
@@ -37,7 +38,7 @@ export function ModalView({onPress, characters}: Props) {
     })
 
     const displayCharacters = () => {
-        return characters.map((character: Character, key: number) => <ModalList key={key} character={character}/>)
+        return characters.map((character: Character) => <ModalListItem onPress={() => onClickedCharacter} character={character}/>)
     }
 
     return <View style={styles.modalContainer}>

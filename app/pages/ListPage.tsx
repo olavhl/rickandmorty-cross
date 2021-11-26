@@ -27,10 +27,10 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
 
     return (
         <SafeAreaView style={globalStyle.mainBackground}>
-            {data && <FlatList data={data}
+            {data && <FlatList data={data.results}
                                keyExtractor={(item) => item.id.toString()}
                                renderItem={({item}) => <CharacterListItem
-                                   onPress={() => navigation.navigate("Details", {character: item})} character={item}/>}
+                               onPress={() => navigation.navigate("Details", {character: item})} character={item}/>}
             />}
         </SafeAreaView>
     )

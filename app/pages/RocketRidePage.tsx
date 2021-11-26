@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import useApi from "../hooks/useApi";
-import {ApiProps} from "../types/Props";
+import {ApiProps, Character} from "../types/Props";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
@@ -11,6 +11,7 @@ import {ModalView} from "../components/modal/ModalView";
 const RocketRidePage = () => {
     const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
     const [modalVisible, setModalVisible] = useState(false)
+    const [characterOne, setCharacterOne] = useState<Character>()
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
@@ -23,6 +24,10 @@ const RocketRidePage = () => {
 
     const hideModal = () => {
         setModalVisible(false)
+    }
+
+    const handleClickedCharacter = (clickedCharacter: Character) => {
+        setCharacterOne(clickedCharacter)
     }
 
     if (loading) {
@@ -46,7 +51,7 @@ const RocketRidePage = () => {
             </TouchableOpacity>
 
         </View>
-        {modalVisible && <ModalView characters={data!} onPress={() => hideModal()}/>}
+        {modalVisible && data && <ModalView onClickedCharacter={() => handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
     </SafeAreaView>
 }
 

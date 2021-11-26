@@ -10,7 +10,15 @@ export type Character = {
 }
 
 export type ApiProps = {
-    results: [
-     character: Character
+    results: [{
+        id: number,
+        name: string,
+        species: string,
+        status: string,
+        image: string,
+        origin: {
+            name: string,
+        }
+    }
     ]
 }
