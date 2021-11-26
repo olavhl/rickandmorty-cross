@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import useApi from "../hooks/useApi";
 import {ApiProps, Character} from "../types/Props";
 import RickAndMortyApi from "../api/RickAndMortyApi";
@@ -41,12 +41,23 @@ const RocketRidePage = () => {
     }
 
     return <SafeAreaView style={[globalStyle.mainBackground, styles.container]}>
-        <Text style={[globalStyle.textColor, styles.textStyles]}>Select Characters for Rocket Ride</Text>
+        <Text style={[globalStyle.textColor, styles.textStyles]}>
+            Select Characters for Rocket Ride
+        </Text>
+
         <View style={styles.addUsers}>
             <RocketUserSelection character={characterOne} circleColor={"#8685EF"} showModal={() => showModal()}/>
             <View style={{flex: 0.2}}/>
-            <RocketUserSelection character={characterTwo} circleColor={"#63B9C1"} showModal={() => showModal()} />
+            <RocketUserSelection character={characterTwo} circleColor={"#63B9C1"} showModal={() => showModal()}/>
         </View>
+
+
+        {characterOne && characterTwo &&
+            <TouchableOpacity style={styles.rideBtn} onPress={() => console.log("ridin")}>
+                <Text style={styles.rideBtnText}>Ride the Rocket</Text>
+            </TouchableOpacity>
+        }
+
         {modalVisible && data &&
         <ModalView onClickedCharacter={handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
     </SafeAreaView>
@@ -73,6 +84,20 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row'
     },
+    rideBtn: {
+        backgroundColor: "#589ecc",
+        width: 200,
+        height: 50,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 100
+    },
+    rideBtnText: {
+        fontWeight: "bold",
+        fontSize: 18,
+        color: "white"
+    }
 })
 
 export default RocketRidePage;
