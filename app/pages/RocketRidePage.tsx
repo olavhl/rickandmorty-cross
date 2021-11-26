@@ -1,37 +1,34 @@
 import React, {useEffect, useState} from "react";
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 import useApi from "../hooks/useApi";
 import {ApiProps, Character} from "../types/Props";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
-import {CircleIcon} from "../components/CircleIcon";
 import {ModalView} from "../components/modal/ModalView";
+import {RocketUserSelection} from "../components/RocketUserSelection";
 
 const RocketRidePage = () => {
     const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
     const [modalVisible, setModalVisible] = useState(false)
     const [characterOne, setCharacterOne] = useState<Character>()
+    const [characterTwo, setCharacterTwo] = useState<Character>()
     const globalStyle = require("../assets/style");
+
+    const showModal = () => setModalVisible(true);
+    const hideModal = () => setModalVisible(false);
 
     useEffect(() => {
         getCharacters().then(() => console.log("Fetched API"))
     }, [])
 
-    useEffect(() => {
-        console.log(characterOne?.name)
-    }, [characterOne])
-
-    const showModal = () => {
-        setModalVisible(true);
-    }
-
-    const hideModal = () => {
-        setModalVisible(false)
-    }
 
     const handleClickedCharacter = (clickedCharacter: Character) => {
-        setCharacterOne(clickedCharacter)
+        if (!characterOne) {
+            setCharacterOne(clickedCharacter)
+        } else {
+            setCharacterTwo(clickedCharacter)
+        }
         hideModal()
     }
 
@@ -46,17 +43,12 @@ const RocketRidePage = () => {
     return <SafeAreaView style={[globalStyle.mainBackground, styles.container]}>
         <Text style={[globalStyle.textColor, styles.textStyles]}>Select Characters for Rocket Ride</Text>
         <View style={styles.addUsers}>
-            <TouchableOpacity onPress={() => showModal()}>
-                <CircleIcon widthAndHeight={100} circleColor={"#8685EF"} imageName={"user-plus"} imageSize={50}/>
-            </TouchableOpacity>
+            <RocketUserSelection character={characterOne} circleColor={"#8685EF"} showModal={() => showModal()}/>
             <View style={{flex: 0.2}}/>
-            <TouchableOpacity onPress={() => showModal()}>
-                <CircleIcon widthAndHeight={100} circleColor={"#63B9C1"} imageName={"user-plus"}
-                            imageSize={50}/>
-            </TouchableOpacity>
-
+            <RocketUserSelection character={characterTwo} circleColor={"#63B9C1"} showModal={() => showModal()} />
         </View>
-        {modalVisible && data && <ModalView onClickedCharacter={handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
+        {modalVisible && data &&
+        <ModalView onClickedCharacter={handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
     </SafeAreaView>
 }
 
