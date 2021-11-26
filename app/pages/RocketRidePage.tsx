@@ -18,6 +18,10 @@ const RocketRidePage = () => {
         getCharacters().then(() => console.log("Fetched API"))
     }, [])
 
+    useEffect(() => {
+        console.log(characterOne?.name)
+    }, [characterOne])
+
     const showModal = () => {
         setModalVisible(true);
     }
@@ -28,6 +32,7 @@ const RocketRidePage = () => {
 
     const handleClickedCharacter = (clickedCharacter: Character) => {
         setCharacterOne(clickedCharacter)
+        hideModal()
     }
 
     if (loading) {
@@ -51,7 +56,7 @@ const RocketRidePage = () => {
             </TouchableOpacity>
 
         </View>
-        {modalVisible && data && <ModalView onClickedCharacter={() => handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
+        {modalVisible && data && <ModalView onClickedCharacter={handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
     </SafeAreaView>
 }
 

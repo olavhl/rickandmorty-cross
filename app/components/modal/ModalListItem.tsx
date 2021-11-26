@@ -1,20 +1,23 @@
 import {Character} from "../../types/Props";
 import React from "react";
 import {Sprite} from "../Sprite";
-import {GestureResponderEvent, TouchableHighlight} from "react-native";
+import {TouchableHighlight, View} from "react-native";
 
 type Props = {
     character: Character;
-    onPress: (event: GestureResponderEvent) => void;
+    onPress: (clickedCharacter: Character) => void;
+    listKey: number;
 }
 
-export function ModalListItem({character, onPress}: Props) {
+export function ModalListItem({character, onPress, listKey}: Props) {
     const styles = {
         borderRadius: 50,
         margin: 5
     }
 
-    return <TouchableHighlight onPress={onPress}>
-            <Sprite style={styles} uri={character.image} height={55} width={55} />
-        </TouchableHighlight>
+    return <View key={listKey}>
+        <TouchableHighlight onPress={() => onPress(character)}>
+                <Sprite style={styles} uri={character.image} height={55} width={55} />
+            </TouchableHighlight>
+    </View>
 }

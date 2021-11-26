@@ -1,4 +1,4 @@
-import {GestureResponderEvent, Modal, Pressable, StyleSheet, Text, View} from "react-native";
+import {Modal, Pressable, StyleSheet, Text, View} from "react-native";
 import React from "react";
 import {Character} from "../../types/Props";
 import {ModalListItem} from "./ModalListItem";
@@ -6,7 +6,7 @@ import {ModalListItem} from "./ModalListItem";
 type Props = {
     onPress: () => void;
     characters: [Character];
-    onClickedCharacter: (e: GestureResponderEvent) => void;
+    onClickedCharacter: (clickedCharacter: Character) => void;
 }
 
 export function ModalView({onPress, characters, onClickedCharacter}: Props) {
@@ -38,7 +38,7 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
     })
 
     const displayCharacters = () => {
-        return characters.map((character: Character) => <ModalListItem onPress={() => onClickedCharacter} character={character}/>)
+        return characters.map((character: Character) => <ModalListItem listKey={character.id} onPress={onClickedCharacter} character={character}/>)
     }
 
     return <View style={styles.modalContainer}>
