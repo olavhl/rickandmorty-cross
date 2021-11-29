@@ -7,7 +7,7 @@ import React from "react";
 type Props = {
     character?: Character;
     circleColor: string;
-    showModal: () => void;
+    showModal?: () => void;
 }
 
 export function RocketUserSelection({character, circleColor, showModal}: Props) {

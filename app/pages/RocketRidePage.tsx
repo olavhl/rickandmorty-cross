@@ -21,6 +21,9 @@ const RocketRidePage = () => {
     const showModal = () => setModalVisible(true);
     const hideModal = () => setModalVisible(false);
 
+    const rocketRide = () => setAnimationModalVisible(true)
+    const closeRocketRide = () => setAnimationModalVisible(false)
+
     useEffect(() => {
         getCharacters().then(() => console.log("Fetched API"))
     }, [])
@@ -40,9 +43,7 @@ const RocketRidePage = () => {
         setCharacterTwo(undefined)
     }
 
-    const rocketRide = () => {
-        setAnimationModalVisible(true)
-    }
+
 
     if (loading) {
         return <LoadingView animating={loading}/>
@@ -80,7 +81,7 @@ const RocketRidePage = () => {
         <ModalView onClickedCharacter={handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
 
         { animationModalVisible &&
-            <AnimationModal showModal={animationModalVisible} characterOne={characterOne} characterTwo={characterTwo}/>
+            <AnimationModal showModal={animationModalVisible} closeModal={closeRocketRide} characterOne={characterOne} characterTwo={characterTwo}/>
         }
     </SafeAreaView>
 }
