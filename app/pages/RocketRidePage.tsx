@@ -65,14 +65,14 @@ const RocketRidePage = () => {
         </View>
 
         {characterOne && characterTwo &&
-        <TouchableOpacity style={[styles.rideBtn, styles.rideAndReplayBtn]} onPress={rocketRide}>
-            <Text style={styles.rideBtnText}>Ride the Rocket</Text>
+        <TouchableOpacity style={[styles.rideBtn, globalStyle.btnStyle]} onPress={rocketRide}>
+            <Text style={globalStyle.btnText}>Ride the Rocket</Text>
         </TouchableOpacity>
         }
 
         {/* Possibility to replay */}
         {characterOne &&
-        <TouchableOpacity style={[styles.replayBtn, styles.rideAndReplayBtn]} onPress={replay}>
+        <TouchableOpacity style={[styles.replayBtn, globalStyle.btnStyle]} onPress={replay}>
             <FontAwesome5 name={"undo"} size={25} color={"white"}/>
         </TouchableOpacity>
         }
@@ -93,21 +93,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row'
     },
-    rideAndReplayBtn: {
-        backgroundColor: "#589ecc",
-        height: 50,
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: 100
-    },
+
     rideBtn: {
         width: 200,
-    },
-    rideBtnText: {
-        fontWeight: "bold",
-        fontSize: 18,
-        color: "white"
     },
     replayBtn: {
         width: 60

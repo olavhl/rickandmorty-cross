@@ -21,4 +21,17 @@ module.exports = StyleSheet.create({
         fontSize: 25,
         textAlign: 'center',
     },
+    btnStyle: {
+        backgroundColor: "#589ecc",
+        height: 50,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 100
+    },
+    btnText: {
+        fontWeight: "bold",
+        fontSize: 18,
+        color: "white"
+    },
 })
