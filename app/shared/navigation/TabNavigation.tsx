@@ -3,10 +3,12 @@ import {FontAwesome5} from "@expo/vector-icons";
 import React from "react";
 import CharactersStackNavigations from "./CharactersStackNavigations";
 import RocketRidePage from "../../pages/RocketRidePage";
+import NotificationsPage from "../../pages/NotificationsPage";
 
 export type RootTabParamsList = {
     Characters: undefined;
     Rocket: undefined;
+    Notifications: undefined;
 }
 
 export function TabNavigation() {
@@ -35,6 +37,12 @@ export function TabNavigation() {
                 },
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"rocket"} size={size} color={color}/>
+            }}/>
+            <Tab.Screen name={"Notifications"} component={NotificationsPage} options={{
+                tabBarLabel: () => null,
+                tabBarStyle: tabStyle,
+                tabBarIcon: ({color, size}) =>
+                    <FontAwesome5 name={"bell"} size={size} color={color}/>
             }}/>
         </Tab.Navigator>;
 }

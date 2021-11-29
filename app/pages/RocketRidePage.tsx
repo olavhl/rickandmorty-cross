@@ -53,8 +53,8 @@ const RocketRidePage = () => {
         return <ErrorView onPress={() => getCharacters}/>
     }
 
-    return <SafeAreaView style={[globalStyle.mainBackground, styles.container]}>
-        <Text style={[globalStyle.textColor, styles.textStyles]}>
+    return <SafeAreaView style={[globalStyle.mainBackground, globalStyle.container]}>
+        <Text style={[globalStyle.textColor, globalStyle.textStyles]}>
             Select Characters for Rocket Ride
         </Text>
 
@@ -87,20 +87,6 @@ const RocketRidePage = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    textStyles: {
-        width: '80%',
-        marginTop: 50,
-        fontWeight: 'bold',
-        flex: 0.5,
-        fontSize: 25,
-        textAlign: 'center',
-    },
     addUsers: {
         width: '100%',
         justifyContent: "center",
