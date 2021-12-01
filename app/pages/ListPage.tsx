@@ -8,6 +8,7 @@ import {ApiProps} from "../types/Props";
 import CharacterListItem from "../components/list/CharacterListItem";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../shared/navigation/CharactersStackNavigations";
+import { SearchBar } from 'react-native-elements';
 
 const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)

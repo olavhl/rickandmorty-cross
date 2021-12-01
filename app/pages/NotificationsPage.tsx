@@ -54,8 +54,9 @@ const NotificationsPage = () => {
 
     return <SafeAreaView style={[globalStyle.mainBackground, globalStyle.container]}>
         <Text style={[globalStyle.textColor, globalStyle.textStyles]}>
-            Create a Notification
+            Send a Message to the Gang
         </Text>
+
 
         <View style={styles.inputContainer}>
             <TextInput value={title} maxLength={15} onChangeText={setTitle} style={styles.input} placeholder="Title"/>
