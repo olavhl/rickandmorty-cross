@@ -17,11 +17,12 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
-        getCharacters().then(() => console.log("Fetched API"))
-        if (data) {
-            setSearchList(data.results)
-        }
+        getCharacters().then(() => console.log("Fetched API to List"))
     }, [])
+
+    useEffect(() => {
+        setSearchList(data?.results)
+    }, [data])
 
     if (loading) {
         return <LoadingView animating={loading}/>
@@ -59,7 +60,7 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
                 onChangeText={(text: string) => updateSearch(text)}
 
             />
-            {data && searchList && <FlatList data={searchList}
+            {searchList && <FlatList data={searchList}
                                keyExtractor={(item) => item.id.toString()}
                                renderItem={({item}) => <CharacterListItem
                                    onPress={() => navigation.navigate("Details", {character: item})} character={item}/>}
