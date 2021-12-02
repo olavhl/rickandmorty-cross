@@ -36,9 +36,9 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
         setSearch(searchWord)
 
         if (searchWord !== "") {
-            const newList = searchList?.filter((character) => (character.name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())))
+            const newList = data?.results.filter((character) => (character.name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())))
 
-            if (newList !== undefined) {
+            if (newList) {
                 setSearchList(newList)
             }
         } else {
