@@ -58,12 +58,15 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
                 searchIcon={{color: "white"}}
                 style={styles.searchBarContainer}
                 onChangeText={(text: string) => updateSearch(text)}
-
             />
+
             {searchList && <FlatList data={searchList}
-                               keyExtractor={(item) => item.id.toString()}
-                               renderItem={({item}) => <CharacterListItem
-                                   onPress={() => navigation.navigate("Details", {character: item})} character={item}/>}
+                                     onRefresh={getCharacters}
+                                     refreshing={loading}
+                                     keyExtractor={(item) => item.id.toString()}
+                                     renderItem={({item}) => <CharacterListItem
+                                         onPress={() => navigation.navigate("Details", {character: item})}
+                                         character={item}/>}
             />}
         </SafeAreaView>
     )
@@ -79,9 +82,17 @@ const styles = StyleSheet.create({
 
     },
     searchField: {
-        borderColor: "black",
-        borderWidth: 1,
+
         borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     }
 })
 
