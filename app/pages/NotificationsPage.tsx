@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Linking, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {
+    ImageBackground,
+    Linking,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
 import * as Notifications from "expo-notifications";
 
 const NotificationsPage = () => {
@@ -52,8 +60,8 @@ const NotificationsPage = () => {
         setBody("")
     }
 
-    return <SafeAreaView style={[globalStyle.mainBackground, globalStyle.container]}>
-        <Text style={[globalStyle.textColor, globalStyle.textStyles]}>
+    return <ImageBackground style={[globalStyle.mainBackground, globalStyle.container]} source={require('../assets/rickandmorty.jpeg')}>
+        <Text style={[globalStyle.textColor, globalStyle.textStyles, styles.title]}>
             Send a Message to the Gang
         </Text>
 
@@ -66,12 +74,16 @@ const NotificationsPage = () => {
         <TouchableOpacity style={[globalStyle.btnStyle, styles.notificationBtn]} onPress={triggerNotification}>
             <Text style={globalStyle.btnText}>Send Notification</Text>
         </TouchableOpacity>
-    </SafeAreaView>
+    </ImageBackground>
 }
 
 const styles = StyleSheet.create({
+    title: {
+        marginTop: 100
+    },
     inputContainer: {
-        flex: 1
+        marginTop: 250,
+        flex: 1,
     },
     input: {
         height: 40,
@@ -80,10 +92,19 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         fontSize: 16,
         padding: 10,
-        backgroundColor: "white"
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     notificationBtn: {
         width: 200,
+
     }
 });
 
