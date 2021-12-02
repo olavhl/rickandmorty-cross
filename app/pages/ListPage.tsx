@@ -4,7 +4,7 @@ import RickAndMortyApi from "../api/RickAndMortyApi";
 import useApi from "../hooks/useApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
-import {ApiProps} from "../types/Props";
+import {ApiProps, Character} from "../types/Props";
 import CharacterListItem from "../components/list/CharacterListItem";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../shared/navigation/CharactersStackNavigations";
@@ -12,11 +12,15 @@ import {SearchBar} from 'react-native-elements';
 
 const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
     const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const [searchList, setSearchList] = useState<Character[]>()
     const [search, setSearch] = useState("")
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
         getCharacters().then(() => console.log("Fetched API"))
+        if (data) {
+            setSearchList(data.results)
+        }
     }, [])
 
     if (loading) {
@@ -29,11 +33,21 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
 
     const updateSearch = (searchWord: string) => {
         setSearch(searchWord)
+
+        if (searchWord !== "") {
+            const newList = searchList?.filter((character) => (character.name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())))
+
+            if (newList !== undefined) {
+                setSearchList(newList)
+            }
+        } else {
+            setSearchList(data?.results)
+        }
         console.log(search)
     }
 
     return (
-        <SafeAreaView style={globalStyle.mainBackground}>
+        <SafeAreaView style={[globalStyle.mainBackground, styles.container]}>
             <SearchBar
                 placeholder={"Search for character"}
                 platform={Platform.OS === 'ios' ? 'ios' : 'android'}
@@ -45,7 +59,7 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
                 onChangeText={(text: string) => updateSearch(text)}
 
             />
-            {data && <FlatList data={data.results}
+            {data && searchList && <FlatList data={searchList}
                                keyExtractor={(item) => item.id.toString()}
                                renderItem={({item}) => <CharacterListItem
                                    onPress={() => navigation.navigate("Details", {character: item})} character={item}/>}
@@ -55,6 +69,9 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        height: '100%'
+    },
     searchBarContainer: {
         backgroundColor: "#2A2A2A",
         color: "white"
@@ -64,7 +81,6 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderWidth: 1,
         borderRadius: 10,
-        marginBottom: 10,
     }
 })
 

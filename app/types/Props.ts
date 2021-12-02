@@ -1,11 +1,11 @@
 export type Character = {
-    id: number;
-    name: string;
-    species: string;
-    status: string;
-    image: string;
+    id: number,
+    name: string,
+    species: string,
+    status: string,
+    image: string,
     origin: {
-        name: string;
+        name: string,
     }
 }
 
