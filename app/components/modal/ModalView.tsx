@@ -5,7 +5,7 @@ import {ModalListItem} from "./ModalListItem";
 
 type Props = {
     onPress: () => void;
-    characters: [Character];
+    characters: Character[];
     onClickedCharacter: (clickedCharacter: Character) => void;
 }
 

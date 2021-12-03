@@ -1,17 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import useApi from "../hooks/useApi";
-import {ApiProps, Character} from "../types/Props";
-import RickAndMortyApi from "../api/RickAndMortyApi";
+import {Character} from "../types/Props";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
 import {ModalView} from "../components/modal/ModalView";
 import {RocketUserSelection} from "../components/RocketUserSelection";
 import {FontAwesome5} from "@expo/vector-icons";
 import AnimationModal from "../components/animations/AnimationModal";
+import {CharacterContext, CharacterContextType} from "../context/CharacterContext";
 
 const RocketRidePage = () => {
-    const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const {characters, loading, error, getCharacters} = useContext(CharacterContext) as CharacterContextType;
     const [modalVisible, setModalVisible] = useState(false)
     const [animationModalVisible, setAnimationModalVisible] = useState(false)
     const [characterOne, setCharacterOne] = useState<Character>()
@@ -23,11 +22,6 @@ const RocketRidePage = () => {
 
     const rocketRide = () => setAnimationModalVisible(true)
     const closeRocketRide = () => setAnimationModalVisible(false)
-
-    useEffect(() => {
-        getCharacters().then(() => console.log("Fetched API"))
-    }, [])
-
 
     const handleClickedCharacter = (clickedCharacter: Character) => {
         if (!characterOne) {
@@ -42,8 +36,6 @@ const RocketRidePage = () => {
         setCharacterOne(undefined)
         setCharacterTwo(undefined)
     }
-
-
 
     if (loading) {
         return <LoadingView animating={loading}/>
@@ -77,8 +69,8 @@ const RocketRidePage = () => {
         </TouchableOpacity>
         }
 
-        {modalVisible && data &&
-        <ModalView onClickedCharacter={handleClickedCharacter} characters={data.results} onPress={() => hideModal()}/>}
+        {modalVisible && characters &&
+        <ModalView onClickedCharacter={handleClickedCharacter} characters={characters} onPress={() => hideModal()}/>}
 
         { animationModalVisible &&
             <AnimationModal showModal={animationModalVisible} closeModal={closeRocketRide} characterOne={characterOne} characterTwo={characterTwo}/>
