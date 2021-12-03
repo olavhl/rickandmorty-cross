@@ -1,28 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {FlatList, Platform, SafeAreaView, StyleSheet} from "react-native";
-import RickAndMortyApi from "../api/RickAndMortyApi";
-import useApi from "../hooks/useApi";
 import {LoadingView} from "../shared/LoadingView";
 import {ErrorView} from "../shared/ErrorView";
-import {ApiProps, Character} from "../types/Props";
+import {Character} from "../types/Props";
 import CharacterListItem from "../components/list/CharacterListItem";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../shared/navigation/CharactersStackNavigations";
 import {SearchBar} from 'react-native-elements';
+import {CharacterContext, CharacterContextType} from "../context/CharacterContext";
 
 const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
-    const {data, error, loading, request: getCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const {characters, loading, error, getCharacters} = useContext(CharacterContext) as CharacterContextType;
     const [searchList, setSearchList] = useState<Character[]>()
     const [search, setSearch] = useState("")
     const globalStyle = require("../assets/style");
 
     useEffect(() => {
-        getCharacters().then(() => console.log("Fetched API to List"))
-    }, [])
-
-    useEffect(() => {
-        setSearchList(data?.results)
-    }, [data])
+        setSearchList(characters)
+    }, [characters])
 
     if (loading) {
         return <LoadingView animating={loading}/>
@@ -36,13 +31,13 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
         setSearch(searchWord)
 
         if (searchWord !== "") {
-            const newList = data?.results.filter((character) => (character.name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())))
+            const newList = characters?.filter((character) => (character.name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())))
 
             if (newList) {
                 setSearchList(newList)
             }
         } else {
-            setSearchList(data?.results)
+            setSearchList(characters)
         }
         console.log(search)
     }
