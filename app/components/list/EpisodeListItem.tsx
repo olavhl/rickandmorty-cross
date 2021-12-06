@@ -1,14 +1,19 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {Episode} from "../../types/Props";
 
 type Props = {
     episode: Episode;
+    onPress: (episode: Episode) => void;
 }
 
-const EpisodeListItem = ({episode}: Props) => {
+const EpisodeListItem = ({episode, onPress}: Props) => {
     let episodeNumber;
     let seasonNumber;
+
+    const selectEpisode = () => {
+        onPress(episode)
+    }
 
     const createSeasonAndEpisodeString = () => {
         let stringArray = episode.episode.split("E")
@@ -18,12 +23,12 @@ const EpisodeListItem = ({episode}: Props) => {
 
     createSeasonAndEpisodeString()
 
-    return <View style={styles.cards}>
+    return <TouchableOpacity onPress={selectEpisode} style={styles.cards}>
         <View style={styles.container}>
             <Text style={styles.title}>{episode.name}</Text>
             <Text>Episode {episodeNumber}, Season {seasonNumber}</Text>
         </View>
-    </View>
+    </TouchableOpacity>
 }
 
 const styles = StyleSheet.create({

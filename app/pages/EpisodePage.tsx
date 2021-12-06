@@ -21,6 +21,10 @@ const EpisodePage = () => {
         }
     }, [episodes])
 
+    const displayEpisode = (episode: Episode) => {
+        setCurrentEpisode(episode)
+    }
+
     if (episodeLoading) {
         return <LoadingView animating={episodeLoading}/>
     } else if (characterLoading) {
@@ -34,7 +38,7 @@ const EpisodePage = () => {
     }
 
     return <SafeAreaView style={[globalStyle.mainBackground, globalStyle.container]}>
-        <FlatList horizontal={true} data={episodes} renderItem={({item}) => <EpisodeListItem episode={item}/>}/>
+        <FlatList horizontal={true} data={episodes} renderItem={({item}) => <EpisodeListItem episode={item} onPress={() => displayEpisode(item)}/>}/>
         {currentEpisode && <EpisodeDetails currentEpisode={currentEpisode}/>}
     </SafeAreaView>
 }
