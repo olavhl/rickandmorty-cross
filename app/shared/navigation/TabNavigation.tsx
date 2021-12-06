@@ -4,11 +4,13 @@ import React from "react";
 import CharactersStackNavigations from "./CharactersStackNavigations";
 import RocketRidePage from "../../pages/RocketRidePage";
 import NotificationsPage from "../../pages/NotificationsPage";
+import EpisodePage from "../../pages/EpisodePage";
 
 export type RootTabParamsList = {
     Characters: undefined;
     Rocket: undefined;
     Notifications: undefined;
+    Episodes: undefined;
 }
 
 export function TabNavigation() {
@@ -44,5 +46,11 @@ export function TabNavigation() {
                 tabBarIcon: ({color, size}) =>
                     <FontAwesome5 name={"bell"} size={size} color={color}/>
             }}/>
+        <Tab.Screen name={"Episodes"} component={EpisodePage} options={{
+            tabBarLabel: () => null,
+            tabBarStyle: tabStyle,
+            tabBarIcon: ({color, size}) =>
+                <FontAwesome5 name={"images"} size={size} color={color}/>
+        }}/>
         </Tab.Navigator>;
 }
