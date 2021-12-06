@@ -1,14 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {
-    ImageBackground,
-    Linking,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
-} from "react-native";
+import {ImageBackground, Linking, StyleSheet, Text, TextInput, View} from "react-native";
 import * as Notifications from "expo-notifications";
+import {BlueButton} from "../components/BlueButton";
 
 const NotificationsPage = () => {
     const [title, setTitle] = useState("");
@@ -60,7 +53,8 @@ const NotificationsPage = () => {
         setBody("")
     }
 
-    return <ImageBackground style={[globalStyle.mainBackground, globalStyle.container]} source={require('../assets/rickandmorty.jpeg')}>
+    return <ImageBackground style={[globalStyle.mainBackground, globalStyle.container]}
+                            source={require('../assets/rickandmorty.jpeg')}>
         <Text style={[globalStyle.textColor, globalStyle.textStyles, styles.title]}>
             Send a Message to the Gang
         </Text>
@@ -71,9 +65,7 @@ const NotificationsPage = () => {
             <TextInput value={body} maxLength={30} onChangeText={setBody} style={styles.input} placeholder={"Message"}/>
         </View>
 
-        <TouchableOpacity style={[globalStyle.btnStyle, styles.notificationBtn]} onPress={triggerNotification}>
-            <Text style={globalStyle.btnText}>Send Notification</Text>
-        </TouchableOpacity>
+        <BlueButton btnText={"Send Notification"} width={200} onPress={triggerNotification}/>
     </ImageBackground>
 }
 
@@ -101,10 +93,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-    },
-    notificationBtn: {
-        width: 200,
-
     }
 });
 

@@ -8,6 +8,7 @@ import {RocketUserSelection} from "../components/RocketUserSelection";
 import {FontAwesome5} from "@expo/vector-icons";
 import AnimationModal from "../components/animations/AnimationModal";
 import {CharacterContext, CharacterContextType} from "../context/CharacterContext";
+import {BlueButton} from "../components/BlueButton";
 
 const RocketRidePage = () => {
     const {characters, loading, error, getCharacters} = useContext(CharacterContext) as CharacterContextType;
@@ -57,10 +58,9 @@ const RocketRidePage = () => {
         </View>
 
         {characterOne && characterTwo &&
-        <TouchableOpacity style={[styles.rideBtn, globalStyle.btnStyle]} onPress={rocketRide}>
-            <Text style={globalStyle.btnText}>Ride the Rocket</Text>
-        </TouchableOpacity>
+            <BlueButton width={200} onPress={rocketRide} btnText={"Ride the Rocket"} />
         }
+
 
         {/* Possibility to replay */}
         {characterOne &&
@@ -84,10 +84,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flex: 1,
         flexDirection: 'row'
-    },
-
-    rideBtn: {
-        width: 200,
     },
     replayBtn: {
         width: 60

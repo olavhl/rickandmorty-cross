@@ -51,7 +51,7 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
                     {displayCharacters()}
                 </View>
                 <Pressable onPress={onPress}>
-                    <Text style={[{fontSize: 50}, globalStyle.textColor]}>Close</Text>
+                    <Text style={[{fontSize: 30}, globalStyle.textColor]}>Close</Text>
                 </Pressable>
             </View>
         </Modal>
