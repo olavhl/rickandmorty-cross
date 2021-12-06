@@ -10,13 +10,13 @@ const EpisodeListItem = ({episode}: Props) => {
     let episodeNumber;
     let seasonNumber;
 
-    const createSeasonandEpisodeString = () => {
+    const createSeasonAndEpisodeString = () => {
         let stringArray = episode.episode.split("E")
         episodeNumber = stringArray[1]
         seasonNumber = stringArray[0].substring(1)
     }
 
-    createSeasonandEpisodeString()
+    createSeasonAndEpisodeString()
 
     return <View style={styles.cards}>
         <View style={styles.container}>
