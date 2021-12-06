@@ -12,4 +12,13 @@ const getAllCharacters = async () => {
     }
 }
 
-export default { getAllCharacters };
+const getAllEpisodes = async () => {
+    try {
+        const res = await Axios.get<ApiProps>("episode")
+        return res.data
+    } catch (e) {
+        throw "Error fetching characters from API " + e
+    }
+}
+
+export default { getAllCharacters, getAllEpisodes };

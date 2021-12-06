@@ -14,19 +14,21 @@ export const CharacterContext = createContext<CharacterContextType | null>(null)
 
 export const CharacterProvider: FC = ({children}) => {
     const [characters, setCharacters] = useState<Character[]>();
-    const {data, error, loading, request} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const {data: character, error, loading, request: getAllCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
 
     useEffect(() => {
-        request().then(() => console.log("Fetched API to Context"))
+        getAllCharacters().then(() => console.log("Fetched Characters to Context"))
     }, [])
 
     useEffect(() => {
-        setCharacters(data?.results)
-    }, [data])
+        setCharacters(character?.results)
+    }, [character])
 
     const getCharacters = () => {
-        request().then(() => console.log("Fetched API to Context"))
+        getAllCharacters().then(() => console.log("Fetched API to Context"))
     }
+
+
 
     return (
         <CharacterContext.Provider value={{characters, error, loading, getCharacters}}>

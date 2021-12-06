@@ -22,3 +22,22 @@ export type ApiProps = {
     }
     ]
 }
+
+export type Episode = {
+    id: number,
+    name: string,
+    air_date: string
+    episode: string;
+    characters: [string]
+}
+
+export type ApiEpisodeProps = {
+    results: [{
+        id: number,
+        name: string,
+        air_date: string
+        episode: string;
+        characters: [string]
+    }
+    ]
+}
