@@ -17,8 +17,8 @@ const EpisodeListItem = ({episode, onPress}: Props) => {
 
     const createSeasonAndEpisodeString = () => {
         let stringArray = episode.episode.split("E")
-        episodeNumber = stringArray[1]
-        seasonNumber = stringArray[0].substring(1)
+        episodeNumber = parseInt(stringArray[1])
+        seasonNumber = parseInt(stringArray[0].substring(1))
     }
 
     createSeasonAndEpisodeString()

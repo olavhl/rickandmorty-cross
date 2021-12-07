@@ -1,7 +1,8 @@
 import {Character, Episode} from "../../types/Props";
-import {Dimensions, StyleSheet, Text, View} from "react-native";
+import {Dimensions, ScrollView, StyleSheet, Text, View} from "react-native";
 import React, {useContext, useEffect, useState} from "react";
 import {CharacterContext, CharacterContextType} from "../../context/CharacterContext";
+import {Sprite} from "../Sprite";
 
 type Props = {
     currentEpisode: Episode;
@@ -19,14 +20,14 @@ const EpisodeDetails = ({currentEpisode}: Props) => {
 
     const createSeasonAndEpisodeString = () => {
         let stringArray = currentEpisode.episode.split("E")
-        episodeNumber = stringArray[1]
-        seasonNumber = stringArray[0].substring(1)
+        episodeNumber = parseInt(stringArray[1])
+        seasonNumber = parseInt(stringArray[0].substring(1))
     }
     createSeasonAndEpisodeString()
 
     const getSelectedCharacters = () => {
-        setCharacterList([])
         const charsToAdd: Character[] = []
+
         currentEpisode.characters.map((character) => {
             let currentId = character.split("/");
             let characterId = parseInt(currentId[5]);
@@ -38,20 +39,29 @@ const EpisodeDetails = ({currentEpisode}: Props) => {
                     }
                 }
             }
-
         })
-
         setCharacterList(charsToAdd)
     }
 
-    return <View style={styles.container}>
+    const displayCharacters = () => {
+        const imageStyles = {
+            borderRadius: 50,
+        }
+
+        return characterList.map((character, key) => <View style={styles.characterImage} key={key}>
+            <Sprite style={imageStyles} uri={character.image} height={65} width={65} />
+        </View>)
+    }
+
+
+    return <ScrollView style={styles.container}>
         <Text style={styles.title}>{currentEpisode.name}</Text>
         <Text style={styles.textInfo}>Season: {seasonNumber}</Text>
         <Text style={styles.textInfo}>Episode: {episodeNumber}</Text>
         <Text style={styles.textInfo}>Air date: {currentEpisode.air_date}</Text>
         <Text style={styles.textInfo}>Characters: </Text>
-        {characterList ? characterList.map((e) => <Text>{e.name}</Text>) : <Text>Hello</Text>}
-    </View>;
+        {characterList && <View style={styles.characters}>{displayCharacters()}</View>}
+    </ScrollView>;
 }
 
 const styles = StyleSheet.create({
@@ -81,6 +91,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 20,
         marginBottom: 5
+    },
+    characters: {
+        flexWrap: 'wrap',
+        flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "center",
+        marginTop: 20,
+        width: '100%'
+    },
+    characterImage: {
+        margin: 5
     }
 })
 
