@@ -28,8 +28,6 @@ export const CharacterProvider: FC = ({children}) => {
         getAllCharacters().then(() => console.log("Fetched API to Context"))
     }
 
-
-
     return (
         <CharacterContext.Provider value={{characters, error, loading, getCharacters}}>
             {children}
