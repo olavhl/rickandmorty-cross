@@ -38,7 +38,7 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
     })
 
     const displayCharacters = () => {
-        return characters.map((character: Character) => <ModalListItem listKey={character.id} onPress={onClickedCharacter} character={character}/>)
+        return characters.map((character: Character, key) => <View key={key}><ModalListItem onPress={onClickedCharacter} character={character}/></View>)
     }
 
     return <View style={styles.modalContainer}>
