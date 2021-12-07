@@ -1,6 +1,7 @@
 import {ActivityIndicator, StyleSheet, View} from "react-native";
 import React from "react";
 
+// Component when API is Loading
 export function LoadingView(props: { animating: boolean }) {
 
     const styles = StyleSheet.create({

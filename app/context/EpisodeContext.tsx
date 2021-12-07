@@ -10,14 +10,20 @@ export type EpisodeContextType = {
     getEpisodes: () => void;
 }
 
+// Setting Episodes and functions to Context to easier access the data
 export const EpisodeContext = createContext<EpisodeContextType | null>(null);
 
 export const EpisodeProvider: FC = ({children}) => {
     const [episodes, setEpisodes] = useState<Episode[]>();
-    const {data: episode, error, loading, request: getAllEpisodes} = useApi<ApiEpisodeProps>(RickAndMortyApi.getAllEpisodes)
+    const {
+        data: episode,
+        error,
+        loading,
+        request: getAllEpisodes
+    } = useApi<ApiEpisodeProps>(RickAndMortyApi.getAllEpisodes)
 
     useEffect(() => {
-        getAllEpisodes().then(() => console.log("Fetched Characters to Context"))
+        getAllEpisodes().then(() => console.log("Fetched Episodes to Context"))
     }, [])
 
     useEffect(() => {
@@ -27,8 +33,6 @@ export const EpisodeProvider: FC = ({children}) => {
     const getEpisodes = () => {
         getAllEpisodes().then(() => console.log("Fetched API to Context"))
     }
-
-
 
     return (
         <EpisodeContext.Provider value={{episodes, error, loading, getEpisodes}}>

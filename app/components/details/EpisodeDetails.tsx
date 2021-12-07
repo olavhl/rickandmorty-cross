@@ -11,13 +11,13 @@ type Props = {
 const EpisodeDetails = ({currentEpisode}: Props) => {
     const {characters} = useContext(CharacterContext) as CharacterContextType;
     const [characterList, setCharacterList] = useState<Character[]>([])
-    let episodeNumber;
-    let seasonNumber;
+    let episodeNumber, seasonNumber;
 
     useEffect(() => {
         getSelectedCharacters()
     }, [currentEpisode])
 
+    // Function to get episode and season number
     const createSeasonAndEpisodeString = () => {
         let stringArray = currentEpisode.episode.split("E")
         episodeNumber = parseInt(stringArray[1])
@@ -25,6 +25,7 @@ const EpisodeDetails = ({currentEpisode}: Props) => {
     }
     createSeasonAndEpisodeString()
 
+    // Gets character for each episode
     const getSelectedCharacters = () => {
         const charsToAdd: Character[] = []
 
@@ -49,7 +50,7 @@ const EpisodeDetails = ({currentEpisode}: Props) => {
         }
 
         return characterList.map((character, key) => <View style={styles.characterImage} key={key}>
-            <Sprite style={imageStyles} uri={character.image} height={65} width={65} />
+            <Sprite style={imageStyles} uri={character.image} height={65} width={65}/>
         </View>)
     }
 

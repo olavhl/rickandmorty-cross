@@ -10,6 +10,7 @@ const CharacterDetailsPage = ({route}: NativeStackScreenProps<RootStackParamList
     const character = route.params.character
     const globalStyle = require("../assets/style");
 
+    // Using dimensions to set the image to half the size of the screen
     const width = (Dimensions.get('window').width) * 0.5;
 
 
@@ -18,9 +19,9 @@ const CharacterDetailsPage = ({route}: NativeStackScreenProps<RootStackParamList
             <Sprite style={styles.sprite} uri={character.image} height={width} width={width}/>
             <Text style={[globalStyle.textColor, styles.name]}>{character.name}</Text>
             <View style={styles.details}>
-                <DetailsInfo circleColor={"#6ABEF5"} iconName={"fingerprint"} textName={character.species} />
+                <DetailsInfo circleColor={"#6ABEF5"} iconName={"fingerprint"} textName={character.species}/>
                 <DetailsInfo circleColor={"#8685EF"} iconName={"heartbeat"} textName={character.status}/>
-                <DetailsInfo circleColor={"#63B9C1"} iconName={"globe-americas"} textName={character.origin.name} />
+                <DetailsInfo circleColor={"#63B9C1"} iconName={"globe-americas"} textName={character.origin.name}/>
             </View>
         </View>
     )

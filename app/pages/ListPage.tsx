@@ -19,27 +19,26 @@ const ListPage = ({navigation}: NativeStackScreenProps<RootStackParamList>) => {
         setSearchList(characters)
     }, [characters])
 
-    if (loading) {
-        return <LoadingView animating={loading}/>
-    }
-
-    if (error) {
-        return <ErrorView onPress={() => getCharacters}/>
-    }
-
+    // Updating list whenever the input of the search field is changed
     const updateSearch = (searchWord: string) => {
         setSearch(searchWord)
 
         if (searchWord !== "") {
             const newList = characters?.filter((character) => (character.name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())))
-
             if (newList) {
                 setSearchList(newList)
             }
         } else {
             setSearchList(characters)
         }
-        console.log(search)
+    }
+
+    if (loading) {
+        return <LoadingView animating={loading}/>
+    }
+
+    if (error) {
+        return <ErrorView onPress={() => getCharacters}/>
     }
 
     return (

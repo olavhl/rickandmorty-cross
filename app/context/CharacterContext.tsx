@@ -10,11 +10,17 @@ export type CharacterContextType = {
     getCharacters: () => void;
 }
 
+// Setting Character and functions to Context to easier access the data
 export const CharacterContext = createContext<CharacterContextType | null>(null);
 
 export const CharacterProvider: FC = ({children}) => {
     const [characters, setCharacters] = useState<Character[]>();
-    const {data: character, error, loading, request: getAllCharacters} = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
+    const {
+        data: character,
+        error,
+        loading,
+        request: getAllCharacters
+    } = useApi<ApiProps>(RickAndMortyApi.getAllCharacters)
 
     useEffect(() => {
         getAllCharacters().then(() => console.log("Fetched Characters to Context"))

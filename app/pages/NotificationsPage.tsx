@@ -13,6 +13,7 @@ const NotificationsPage = () => {
         setNotificationHandler()
     }, [])
 
+    // Getting NotificationHandler ready to send
     function setNotificationHandler() {
         const handler: Notifications.NotificationHandler = {
             handleNotification: async () => {
@@ -26,12 +27,15 @@ const NotificationsPage = () => {
         Notifications.setNotificationHandler(handler)
     }
 
+    // Granting permission to send Notifications
     async function getPermission() {
         const {granted} = await Notifications.requestPermissionsAsync();
         if (!granted) await Linking.openSettings();
         return granted;
     }
 
+    // Setting Notification to Default values if fields have no value
+    // else setting to input value from fields
     const triggerNotification = () => {
         if (title === "") {
             setTitle("Default Title")

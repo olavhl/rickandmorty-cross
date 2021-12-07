@@ -8,13 +8,13 @@ type Props = {
 }
 
 const EpisodeListItem = ({episode, onPress}: Props) => {
-    let episodeNumber;
-    let seasonNumber;
+    let episodeNumber, seasonNumber;
 
     const selectEpisode = () => {
         onPress(episode)
     }
 
+    // Function to get episode and season number
     const createSeasonAndEpisodeString = () => {
         let stringArray = episode.episode.split("E")
         episodeNumber = parseInt(stringArray[1])
@@ -23,6 +23,7 @@ const EpisodeListItem = ({episode, onPress}: Props) => {
 
     createSeasonAndEpisodeString()
 
+    // Touchable to be able to select each episode
     return <TouchableOpacity onPress={selectEpisode} style={styles.cards}>
         <View style={styles.container}>
             <Text style={styles.title}>{episode.name}</Text>

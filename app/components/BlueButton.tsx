@@ -7,6 +7,7 @@ type Props = {
     btnText: string;
 }
 
+// Generic button, to have the same styling and looks of the buttons
 export function BlueButton({width, btnText, onPress}: Props) {
     const globalStyle = require("../assets/style");
     const styles = StyleSheet.create({

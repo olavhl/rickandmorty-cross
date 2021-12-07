@@ -9,8 +9,19 @@ import {Episode} from "../types/Props";
 import EpisodeDetails from "../components/details/EpisodeDetails";
 
 const EpisodePage = () => {
-    const {episodes, loading: episodeLoading, error: episodeError, getEpisodes} = useContext(EpisodeContext) as EpisodeContextType;
-    const {loading: characterLoading, error: characterError, getCharacters} = useContext(CharacterContext) as CharacterContextType;
+    // Fetching both characters and episodes to be able to handle loading and error
+    // for both of the fetch-calls
+    const {
+        episodes,
+        loading: episodeLoading,
+        error: episodeError,
+        getEpisodes
+    } = useContext(EpisodeContext) as EpisodeContextType;
+    const {
+        loading: characterLoading,
+        error: characterError,
+        getCharacters
+    } = useContext(CharacterContext) as CharacterContextType;
     const [currentEpisode, setCurrentEpisode] = useState<Episode>()
 
     const globalStyle = require("../assets/style");
@@ -38,7 +49,8 @@ const EpisodePage = () => {
     }
 
     return <SafeAreaView style={[globalStyle.mainBackground, globalStyle.container]}>
-        <FlatList horizontal={true} data={episodes} renderItem={({item}) => <EpisodeListItem episode={item} onPress={() => displayEpisode(item)}/>}/>
+        <FlatList horizontal={true} data={episodes}
+                  renderItem={({item}) => <EpisodeListItem episode={item} onPress={() => displayEpisode(item)}/>}/>
         {currentEpisode && <EpisodeDetails currentEpisode={currentEpisode}/>}
     </SafeAreaView>
 }

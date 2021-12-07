@@ -21,36 +21,36 @@ export function TabNavigation() {
     };
 
     return <Tab.Navigator screenOptions={{headerShown: false}}>
-            <Tab.Screen name={"Characters"} component={CharactersStackNavigations} options={{
-                tabBarLabel: () => null,
-                tabBarStyle: tabStyle,
-                tabBarIcon: ({color, size}) =>
-                    <FontAwesome5 name={"list"} size={size} color={color}/>
-            }}/>
-            <Tab.Screen name={"Rocket"} component={RocketRidePage} options={{
-                tabBarLabel: () => null,
-                tabBarStyle: tabStyle,
-                headerShadowVisible: false,
-                headerStyle: {
-                    backgroundColor: "#2A2A2A",
-                },
-                headerTitleStyle: {
-                    color: "#FFFFFF",
-                },
-                tabBarIcon: ({color, size}) =>
-                    <FontAwesome5 name={"rocket"} size={size} color={color}/>
-            }}/>
-            <Tab.Screen name={"Notifications"} component={NotificationsPage} options={{
-                tabBarLabel: () => null,
-                tabBarStyle: tabStyle,
-                tabBarIcon: ({color, size}) =>
-                    <FontAwesome5 name={"bell"} size={size} color={color}/>
-            }}/>
+        <Tab.Screen name={"Characters"} component={CharactersStackNavigations} options={{
+            tabBarLabel: () => null,
+            tabBarStyle: tabStyle,
+            tabBarIcon: ({color, size}) =>
+                <FontAwesome5 name={"list"} size={size} color={color}/>
+        }}/>
+        <Tab.Screen name={"Rocket"} component={RocketRidePage} options={{
+            tabBarLabel: () => null,
+            tabBarStyle: tabStyle,
+            headerShadowVisible: false,
+            headerStyle: {
+                backgroundColor: "#2A2A2A",
+            },
+            headerTitleStyle: {
+                color: "#FFFFFF",
+            },
+            tabBarIcon: ({color, size}) =>
+                <FontAwesome5 name={"rocket"} size={size} color={color}/>
+        }}/>
+        <Tab.Screen name={"Notifications"} component={NotificationsPage} options={{
+            tabBarLabel: () => null,
+            tabBarStyle: tabStyle,
+            tabBarIcon: ({color, size}) =>
+                <FontAwesome5 name={"bell"} size={size} color={color}/>
+        }}/>
         <Tab.Screen name={"Episodes"} component={EpisodePage} options={{
             tabBarLabel: () => null,
             tabBarStyle: tabStyle,
             tabBarIcon: ({color, size}) =>
                 <FontAwesome5 name={"images"} size={size} color={color}/>
         }}/>
-        </Tab.Navigator>;
+    </Tab.Navigator>;
 }

@@ -1,5 +1,7 @@
 import {useState} from "react";
 
+// Generic hook to fetch API and set Loading and Error
+// Copied from lecture
 const useApi = <T = unknown>(apiFunction: Function) => {
     const [data, setData] = useState<T>()
     const [error, setError] = useState(false)
@@ -18,7 +20,7 @@ const useApi = <T = unknown>(apiFunction: Function) => {
         }
     }
 
-    return { data, error, loading, request }
+    return {data, error, loading, request}
 }
 
 export default useApi;

@@ -1,6 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 
+// Component when an Error occurs
 export function ErrorView(props: { onPress: () => void }) {
     const globalStyle = require("../assets/style");
 

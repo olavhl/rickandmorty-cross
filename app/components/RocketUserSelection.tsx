@@ -10,6 +10,7 @@ type Props = {
     showModal?: () => void;
 }
 
+// Component to display Icons and activate Modal onPress.
 export function RocketUserSelection({character, circleColor, showModal}: Props) {
     const displayClickedUser = (character: Character) => {
         const style = {

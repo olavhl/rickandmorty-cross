@@ -13,10 +13,11 @@ export type RootStackParamList = {
 const CharactersStackNavigations = () => {
     const Stack = createNativeStackNavigator<RootStackParamList>();
 
+    // Image in header on HomePage
     const BackgroundImage = () => {
         return (
             <Image
-                style={{ width: 150, height: 45 }}
+                style={{width: 150, height: 45}}
                 source={require('../../assets/rickAndMortyTitle.png')}
             />
         );
@@ -38,10 +39,10 @@ const CharactersStackNavigations = () => {
             headerStyle: {
                 backgroundColor: "#2A2A2A",
             },
-            headerTitle: () => <BackgroundImage />,
+            headerTitle: () => <BackgroundImage/>,
         }}
         />
-        <Stack.Screen name={"Details"} component={CharacterDetailsPage} options={options} />
+        <Stack.Screen name={"Details"} component={CharacterDetailsPage} options={options}/>
     </Stack.Navigator>
 }
 

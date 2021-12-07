@@ -25,6 +25,7 @@ const AnimationModal = ({showModal, closeModal, characterOne, characterTwo}: Pro
         })
     }, [])
 
+    // Setting the translateY to a dynamic variable to be able to animate the value
     const styles = StyleSheet.create({
         container: {
             height: '100%'

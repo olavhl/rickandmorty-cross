@@ -1,5 +1,6 @@
 import {StyleSheet} from "react-native";
 
+// Global Styling to be able
 module.exports = StyleSheet.create({
     mainBackground: {
         backgroundColor: "#2A2A2A",

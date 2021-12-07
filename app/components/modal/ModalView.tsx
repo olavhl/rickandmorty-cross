@@ -9,6 +9,7 @@ type Props = {
     onClickedCharacter: (clickedCharacter: Character) => void;
 }
 
+// Modal to select users for rocketride
 export function ModalView({onPress, characters, onClickedCharacter}: Props) {
     const globalStyle = require("../../assets/style");
     const styles = StyleSheet.create({
@@ -38,7 +39,8 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
     })
 
     const displayCharacters = () => {
-        return characters.map((character: Character, key) => <View key={key}><ModalListItem onPress={onClickedCharacter} character={character}/></View>)
+        return characters.map((character: Character, key) => <View key={key}><ModalListItem onPress={onClickedCharacter}
+                                                                                            character={character}/></View>)
     }
 
     return <View style={styles.modalContainer}>

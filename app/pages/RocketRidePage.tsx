@@ -24,6 +24,7 @@ const RocketRidePage = () => {
     const rocketRide = () => setAnimationModalVisible(true)
     const closeRocketRide = () => setAnimationModalVisible(false)
 
+    // Setting characters when one is picked from modal
     const handleClickedCharacter = (clickedCharacter: Character) => {
         if (!characterOne) {
             setCharacterOne(clickedCharacter)
@@ -57,21 +58,25 @@ const RocketRidePage = () => {
             <RocketUserSelection character={characterTwo} circleColor={"#63B9C1"} showModal={() => showModal()}/>
         </View>
 
+        {/* Ride Rocket Button */}
         {characterOne && characterTwo &&
             <BlueButton width={200} onPress={rocketRide} btnText={"Ride the Rocket"} />
         }
 
 
-        {/* Possibility to replay */}
+        {/* Replay Button */}
         {characterOne &&
-        <TouchableOpacity style={[styles.replayBtn, globalStyle.btnStyle]} onPress={replay}>
-            <FontAwesome5 name={"undo"} size={25} color={"white"}/>
-        </TouchableOpacity>
+            <TouchableOpacity style={[styles.replayBtn, globalStyle.btnStyle]} onPress={replay}>
+                <FontAwesome5 name={"undo"} size={25} color={"white"}/>
+            </TouchableOpacity>
         }
 
+        {/* Choose Characters-Modal */}
         {modalVisible && characters &&
-        <ModalView onClickedCharacter={handleClickedCharacter} characters={characters} onPress={() => hideModal()}/>}
+            <ModalView onClickedCharacter={handleClickedCharacter} characters={characters} onPress={() => hideModal()}/>
+        }
 
+        {/* Animation-Modal */}
         { animationModalVisible &&
             <AnimationModal showModal={animationModalVisible} closeModal={closeRocketRide} characterOne={characterOne} characterTwo={characterTwo}/>
         }

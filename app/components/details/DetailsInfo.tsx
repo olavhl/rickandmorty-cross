@@ -8,6 +8,7 @@ type Props = {
     circleColor: string;
 }
 
+// Component to display Info such as "Alive"
 export function DetailsInfo({iconName, textName, circleColor}: Props) {
     const globalStyle = require("../../assets/style");
     const styles = StyleSheet.create({

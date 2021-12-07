@@ -9,6 +9,7 @@ type Props = {
     imageSize: number;
 }
 
+// Component to display icons with a custom color and width
 export function CircleIcon({widthAndHeight, circleColor, imageName, imageSize}: Props) {
     const styles = StyleSheet.create({
         iconCircle: {
