@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         marginTop: 100
     },
     inputContainer: {
-        marginTop: 250,
+        marginTop: 50,
         flex: 1,
     },
     input: {

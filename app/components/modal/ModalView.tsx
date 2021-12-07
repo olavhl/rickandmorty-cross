@@ -19,10 +19,10 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
             alignItems: "center",
         },
         modalText: {
-            marginTop: 180,
-            marginBottom: 180,
-            marginLeft: 40,
-            marginRight: 40,
+            marginTop: 75,
+            marginBottom: 75,
+            marginLeft: 20,
+            marginRight: 20,
             backgroundColor: "#000000",
             borderRadius: 20,
             padding: 20,
@@ -35,6 +35,15 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
             flexDirection: "row",
             alignContent: "center",
             justifyContent: "center"
+        },
+        closeBtn: {
+            width: 125,
+            height: 40,
+            borderWidth: .5,
+            borderColor: 'white',
+            borderRadius: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
         }
     })
 
@@ -46,14 +55,14 @@ export function ModalView({onPress, characters, onClickedCharacter}: Props) {
     return <View style={styles.modalContainer}>
         <Modal animationType={"slide"} transparent={true}>
             <View style={styles.modalText}>
-                <Text style={[globalStyle.textColor]}>
+                <Text style={[globalStyle.textColor, {fontSize: 25}]}>
                     Select Characters
                 </Text>
                 <View style={styles.characterContainer}>
                     {displayCharacters()}
                 </View>
-                <Pressable onPress={onPress}>
-                    <Text style={[{fontSize: 30}, globalStyle.textColor]}>Close</Text>
+                <Pressable style={styles.closeBtn} onPress={onPress}>
+                    <Text style={[{fontSize: 20}, globalStyle.textColor]}>Close</Text>
                 </Pressable>
             </View>
         </Modal>
